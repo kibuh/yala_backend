@@ -138,7 +138,7 @@ app = Flask(__name__)
 def handle_translation():
     body = request.json
     yala_sentence =  translate_english_to_yala(body['input'])
-
+    print(yala_sentence)
     return jsonify({'english': body['input'][0], 'yala': yala_sentence})
 
 # @app.route('/api/v1/translate_test', methods=['POST'])
