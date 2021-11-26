@@ -18,17 +18,16 @@ num_decoder_tokens = 67
 max_encoder_seq_length = 36
 max_decoder_seq_length = 47
 
-LSTM_PATH = 'models/lstm_model.h5'
+#LSTM_PATH = 'models/lstm_model.h5'
 ENCODER_PATH = 'models/encoder_model.h5'
 DECODER_PATH = 'models/decoder_model.h5'
 
 # Load your trained model
-model = load_model(LSTM_PATH)
-
+#model = load_model(LSTM_PATH)
 
 encoder_model = load_model(ENCODER_PATH, compile=False)
 decoder_model = load_model(DECODER_PATH, compile=False)
-model.compile()
+#model.compile()
 decoder_model.compile()
 encoder_model.compile()
 
