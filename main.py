@@ -11,6 +11,8 @@ from flask import Flask, redirect, url_for, request, render_template, jsonify
 
 
 # Model saved with Keras model.save()
+from trained_model import TrainedModel
+
 num_encoder_tokens = 40
 num_decoder_tokens = 67
 max_encoder_seq_length = 36
@@ -22,8 +24,10 @@ DECODER_PATH = 'models/decoder_model.h5'
 
 # Load your trained model
 model = load_model(LSTM_PATH)
-encoder_model = load_model(ENCODER_PATH)
-decoder_model = load_model(DECODER_PATH)
+
+
+encoder_model = load_model(ENCODER_PATH, compile=False)
+decoder_model = load_model(DECODER_PATH, compile=False)
 model.compile()
 decoder_model.compile()
 encoder_model.compile()
@@ -133,13 +137,19 @@ app = Flask(__name__)
 @app.route('/api/v1/translate', methods=['POST'])
 def handle_translation():
     body = request.json
-    yala_sentence = translate_english_to_yala(body['input'])
+    yala_sentence = await translate_english_to_yala(body['input'])
 
     return jsonify({'english': body['input'][0], 'yala': yala_sentence})
 
+# @app.route('/api/v1/translate_test', methods=['POST'])
+# def dandler():
+#     body = request.json
+#     trainedModel = TrainedModel(num_encoder_tokens, num_decoder_tokens, max_encoder_seq_length, max_decoder_seq_length, batch_size,latent_dim, num_samples, input_texts, target_texts)
+#     trans = trainedModel.translate_english_to_yala(body['input'])
+#     return jsonify({'english': body['input'][0], 'yala': trans})
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', use_debugger=True, port=6007)
+    app.run(host='0.0.0.0', port=6007)
     # print_hi('PyCharm')
 
