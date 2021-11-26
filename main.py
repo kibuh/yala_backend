@@ -7,11 +7,8 @@ from keras.models import load_model
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template, jsonify
 
-
-
-
 # Model saved with Keras model.save()
-from trained_model import TrainedModel
+
 
 num_encoder_tokens = 40
 num_decoder_tokens = 67
