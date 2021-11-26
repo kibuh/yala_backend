@@ -7,8 +7,8 @@ from keras.models import load_model
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template, jsonify
 
-# Define a flask app
-app = Flask(__name__)
+
+
 
 # Model saved with Keras model.save()
 num_encoder_tokens = 40
@@ -127,6 +127,8 @@ def translate_english_to_yala(english_sentence):
     decoded_sentence = decode_sequence(input_seq)
     return decoded_sentence
 
+# Define a flask app
+app = Flask(__name__)
 
 @app.route('/api/v1/translate', methods=['POST'])
 def handle_translation():
@@ -138,6 +140,6 @@ def handle_translation():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=6007)
+    app.run(host='0.0.0.0', use_debugger=True, port=6007)
     # print_hi('PyCharm')
 
