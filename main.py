@@ -15,19 +15,18 @@ num_decoder_tokens = 67
 max_encoder_seq_length = 36
 max_decoder_seq_length = 47
 
-#LSTM_PATH = 'models/lstm_model.h5'
+# LSTM_PATH = 'models/lstm_model.h5'
 ENCODER_PATH = 'models/encoder_model.h5'
 DECODER_PATH = 'models/decoder_model.h5'
 
 # Load your trained model
-#model = load_model(LSTM_PATH)
+# model = load_model(LSTM_PATH)
 
 encoder_model = load_model(ENCODER_PATH, compile=False)
 decoder_model = load_model(DECODER_PATH, compile=False)
-#model.compile()
+# model.compile()
 decoder_model.compile()
 encoder_model.compile()
-
 
 # Hyperparameters
 batch_size = 64
@@ -127,15 +126,19 @@ def translate_english_to_yala(english_sentence):
     decoded_sentence = decode_sequence(input_seq)
     return decoded_sentence
 
+
 # Define a flask app
+
 app = Flask(__name__)
+
 
 @app.route('/api/v1/translate', methods=['POST'])
 def handle_translation():
     body = request.json
-    yala_sentence =  translate_english_to_yala(body['input'])
+    yala_sentence = translate_english_to_yala(body['input'])
     print(yala_sentence)
     return jsonify({'english': body['input'][0], 'yala': yala_sentence})
+
 
 # @app.route('/api/v1/translate_test', methods=['POST'])
 # def dandler():
@@ -148,4 +151,3 @@ def handle_translation():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6007)
     # print_hi('PyCharm')
-
