@@ -22,8 +22,8 @@ DECODER_PATH = 'models/decoder_model.h5'
 # Load your trained model
 # model = load_model(LSTM_PATH)
 
-encoder_model = load_model(ENCODER_PATH, compile=False)
-decoder_model = load_model(DECODER_PATH, compile=False)
+encoder_model = load_model(ENCODER_PATH)
+decoder_model = load_model(DECODER_PATH)
 # model.compile()
 decoder_model.compile()
 encoder_model.compile()
