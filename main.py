@@ -2,7 +2,7 @@ from __future__ import division, print_function
 import numpy as np
 
 # Keras
-from keras.models import load_model
+from tensorflow import keras
 
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template, jsonify
