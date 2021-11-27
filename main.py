@@ -2,7 +2,7 @@ from __future__ import division, print_function
 import numpy as np
 
 # Keras
-from tensorflow import keras
+from tensorflow.keras.models import load_model
 
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template, jsonify
@@ -22,8 +22,8 @@ DECODER_PATH = 'models/decoder_model.h5'
 # Load your trained model
 # model = load_model(LSTM_PATH)
 
-encoder_model = load_model(ENCODER_PATH)
-decoder_model = load_model(DECODER_PATH)
+encoder_model = load_model(ENCODER_PATH, compile=False)
+decoder_model = load_model(DECODER_PATH, compile=False)
 # model.compile()
 decoder_model.compile()
 encoder_model.compile()
